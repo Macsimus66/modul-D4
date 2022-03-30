@@ -1,0 +1,22 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+news
+{% endblock title %}
+
+{% block content %}
+<h1> Заголовок:
+    {{ newsdetail.heder|Censor }}
+</h1>
+<h2>Содержвание:
+    {% filter Censor %}
+    {{ newsdetail.text|truncatechars:50}}
+    {% endfilter %}
+</h2>
+<h3> Дата публикации:
+    {{ newsdetail.time_in|date:"d-M-Y"}}
+    {{ newsdetail.time_in|time:"H:i"}}
+</h3>
+{% endblock content %}
